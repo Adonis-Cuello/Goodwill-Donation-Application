@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
-public class Form {
+public class Form{
 
 //    User tempUser = new User("Adonis Cuello", "123 Walnut Street Newark, De", "456 Goodwill Drive");
 //    Product tempProduct = new Product("Clothing", "lightly worn t-shirt", 0, 0);
@@ -154,6 +154,14 @@ public class Form {
         this.donoLocation = donoLocation;
     }
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -171,6 +179,7 @@ public class Form {
     @Override
     public String toString() {
         return "Form{" +
+                "id=" + id +
                 ", date='" + date + '\'' +
                 ", fullName='" + fullName + '\'' +
                 ", address='" + address + '\'' +
@@ -179,7 +188,7 @@ public class Form {
                 ", boxes=" + boxes +
                 ", bags=" + bags +
                 ", taxYear=" + taxYear +
-                ", receipt value=" + receiptValue +
+                ", receiptValue=" + receiptValue +
                 ", signature='" + signature + '\'' +
                 ", donoLocation='" + donoLocation + '\'' +
                 '}';
