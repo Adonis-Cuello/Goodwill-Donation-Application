@@ -1,2 +1,4 @@
-package goodwill.donation.com.GoodwillApplication.service;public class SaveUserDataImpl {
+package goodwill.donation.com.GoodwillApplication.service;
+
+public class SaveUserDataImpl {
 }

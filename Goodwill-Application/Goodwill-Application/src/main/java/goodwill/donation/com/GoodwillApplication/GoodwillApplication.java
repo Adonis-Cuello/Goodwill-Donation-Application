@@ -9,5 +9,4 @@ public class GoodwillApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(GoodwillApplication.class, args);
 	}
-
 }
