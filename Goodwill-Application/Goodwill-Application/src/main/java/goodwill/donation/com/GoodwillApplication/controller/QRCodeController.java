@@ -13,7 +13,11 @@ public class QRCodeController {
 
     private final int WIDTH = 250;
     private final int HEIGHT = 250;
+<<<<<<< HEAD
     private final String QR_TEXT = "Spring Boot REST API to generate QR Code - http://localhost:8080/";
+=======
+    private final String QR_TEXT = "Spring Boot REST API to generate QR Code - http://localhost:8080";
+>>>>>>> 9b0724e9c956e7d1c30395331543fd1f55a9b6f4
 
     @Autowired private QRCodeService qrCodeService;
 
