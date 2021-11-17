@@ -16,19 +16,18 @@ public class Form{
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-//    @OneToOne(cascade = CascadeType.ALL)
-//    private User user;
-//
-//    @ManyToOne(cascade = CascadeType.ALL)
-//    private Product product;
+    @OneToOne(cascade = CascadeType.ALL)
+    private User user;
 
-    private String date;
-    private String fullName;
-    private String address;
-    private String description;
-    private String donorNotes;
-    private Integer boxes;
-    private Integer bags;
+    @OneToOne(cascade = CascadeType.ALL)
+    private Product product;
+//    private String date;
+//    private String fullName;
+//    private String address;
+//    private String description;
+//    private String donorNotes;
+//    private Integer boxes;
+//    private Integer bags;
     private Integer taxYear;
     private Integer receiptValue;
     private String signature;
@@ -36,91 +35,86 @@ public class Form{
 
     public Form(){}
 
-    public Form(String date, String fullName, String address, String description, String donorNotes, Integer boxes, Integer bags, Integer taxYear, Integer receiptValue, String signature, String donoLocation) {
-        this.date = date;
-        this.fullName = fullName;
-        this.address = address;
-        this.description = description;
-        this.donorNotes = donorNotes;
-        this.boxes = boxes;
-        this.bags = bags;
+    public Form(User user, Product product, Integer taxYear, Integer receiptValue, String signature, String donoLocation) {
+        this.user = user;
+        this.product = product;
         this.taxYear = taxYear;
         this.receiptValue = receiptValue;
         this.signature = signature;
         this.donoLocation = donoLocation;
     }
 
-//    public User getUser() {
-//        return user;
+        public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
+//    public String getDate() {
+//        return date;
 //    }
 //
-//    public void setUser(User user) {
-//        this.user = user;
+//    public void setDate(String date) {
+//        this.date = date;
 //    }
 //
-//    public Product getProduct() {
-//        return product;
+//    public String getFullName() {
+//        return fullName;
 //    }
 //
-//    public void setProduct(Product product) {
-//        this.product = product;
+//    public void setFullName(String fullName) {
+//        this.fullName = fullName;
 //    }
-
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
-    }
-
-    public String getFullName() {
-        return fullName;
-    }
-
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getDonorNotes() {
-        return donorNotes;
-    }
-
-    public void setDonorNotes(String donorNotes) {
-        this.donorNotes = donorNotes;
-    }
-
-    public Integer getBoxes() {
-        return boxes;
-    }
-
-    public void setBoxes(Integer boxes) {
-        this.boxes = boxes;
-    }
-
-    public Integer getBags() {
-        return bags;
-    }
-
-    public void setBags(Integer bags) {
-        this.bags = bags;
-    }
+//
+//    public String getAddress() {
+//        return address;
+//    }
+//
+//    public void setAddress(String address) {
+//        this.address = address;
+//    }
+//
+//    public String getDescription() {
+//        return description;
+//    }
+//
+//    public void setDescription(String description) {
+//        this.description = description;
+//    }
+//
+//    public String getDonorNotes() {
+//        return donorNotes;
+//    }
+//
+//    public void setDonorNotes(String donorNotes) {
+//        this.donorNotes = donorNotes;
+//    }
+//
+//    public Integer getBoxes() {
+//        return boxes;
+//    }
+//
+//    public void setBoxes(Integer boxes) {
+//        this.boxes = boxes;
+//    }
+//
+//    public Integer getBags() {
+//        return bags;
+//    }
+//
+//    public void setBags(Integer bags) {
+//        this.bags = bags;
+//    }
 
     public Integer getTaxYear() {
         return taxYear;
@@ -167,26 +161,27 @@ public class Form{
         if (this == o) return true;
         if (!(o instanceof Form)) return false;
         Form form = (Form) o;
-        return getTaxYear() == form.getTaxYear() && getReceiptValue() == form.getReceiptValue() && getDate().equals(form.getDate()) && signature.equals(form.signature);
+        return getId().equals(form.getId()) && getUser().equals(form.getUser()) && getProduct().equals(form.getProduct()) && getTaxYear().equals(form.getTaxYear()) && getReceiptValue().equals(form.getReceiptValue()) && getSignature().equals(form.getSignature()) && getDonoLocation().equals(form.getDonoLocation());
     }
 
-    public static boolean isValidPoem(Form form) {
-        return form != null && Strings.isNotBlank(form.getFullName())
-                && Strings.isNotBlank(form.getAddress())
-                && Strings.isNotBlank(form.getDate());
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getUser(), getProduct(), getTaxYear(), getReceiptValue(), getSignature(), getDonoLocation());
     }
+
+    //    public static boolean isValidPoem(Form form) {
+//        return form != null && Strings.isNotBlank(form.getFullName())
+//                && Strings.isNotBlank(form.getAddress())
+//                && Strings.isNotBlank(form.getDate());
+//    }
+
 
     @Override
     public String toString() {
         return "Form{" +
                 "id=" + id +
-                ", date='" + date + '\'' +
-                ", fullName='" + fullName + '\'' +
-                ", address='" + address + '\'' +
-                ", description='" + description + '\'' +
-                ", donorNotes='" + donorNotes + '\'' +
-                ", boxes=" + boxes +
-                ", bags=" + bags +
+                ", user=" + user +
+                ", product=" + product +
                 ", taxYear=" + taxYear +
                 ", receiptValue=" + receiptValue +
                 ", signature='" + signature + '\'' +

@@ -5,13 +5,13 @@ import goodwill.donation.com.GoodwillApplication.model.Form;
 import goodwill.donation.com.GoodwillApplication.model.Product;
 import goodwill.donation.com.GoodwillApplication.model.User;
 import goodwill.donation.com.GoodwillApplication.service.FormServiceImpl;
+import goodwill.donation.com.GoodwillApplication.service.ProductService;
+import goodwill.donation.com.GoodwillApplication.service.SaveUserDataImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.support.RequestContextUtils;
-import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -22,12 +22,21 @@ import java.util.Map;
 @RequestMapping("/forms")
 public class FormController {
 
+    @Autowired
     private FormServiceImpl formService;
+
+    @Autowired
+    private SaveUserDataImpl userService;
+
+    @Autowired
+    private ProductService productService;
 
     @Autowired
     public FormController(FormServiceImpl formService) {
         this.formService = formService;
     }
+
+
 
     @GetMapping("/all")
     public ResponseEntity<List<Form>> getAllForms() {
@@ -36,12 +45,15 @@ public class FormController {
         return response;
     }
 
-    @PostMapping("")
-    public ResponseEntity<Form> createForm(@RequestBody Form form) {
-        Form saved = formService.create(form);
-        ResponseEntity response = new ResponseEntity(saved, HttpStatus.CREATED);
-        return response;
-    }
+//    @PostMapping("")
+//    public ResponseEntity createForm(@RequestBody User user, Product product, Form form) {
+//        Form saved = formService.create(form);
+//        User userSaved = userService.create(user);
+//        Product productSaved = productService.create(product);
+//
+//        ResponseEntity response = new ResponseEntity(saved, userSaved, productSaved, HttpStatus.CREATED);
+//        return response;
+//    }
 
 //    @PostMapping("/forms/submit")
 //    public RedirectView submitPost(
