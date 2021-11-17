@@ -66,6 +66,15 @@ public class Form {
 //        this.product = product;
 //    }
 
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     public String getDate() {
         return date;
     }
@@ -171,6 +180,7 @@ public class Form {
     @Override
     public String toString() {
         return "Form{" +
+                "id=" + id +
                 ", date='" + date + '\'' +
                 ", fullName='" + fullName + '\'' +
                 ", address='" + address + '\'' +
@@ -179,7 +189,7 @@ public class Form {
                 ", boxes=" + boxes +
                 ", bags=" + bags +
                 ", taxYear=" + taxYear +
-                ", receipt value=" + receiptValue +
+                ", receiptValue=" + receiptValue +
                 ", signature='" + signature + '\'' +
                 ", donoLocation='" + donoLocation + '\'' +
                 '}';
