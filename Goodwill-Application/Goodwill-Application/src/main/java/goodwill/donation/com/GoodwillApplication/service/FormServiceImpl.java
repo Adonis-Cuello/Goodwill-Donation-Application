@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class FormServiceImpl {
+public class FormServiceImpl implements FormService {
 
     private FormRepo formRepo;
 

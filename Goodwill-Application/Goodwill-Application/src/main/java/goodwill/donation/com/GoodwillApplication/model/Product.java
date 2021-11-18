@@ -59,6 +59,8 @@ public class Product {
         this.bags = bags;
     }
 
+
+
     @Override
     public String toString() {
         return "Product{" +

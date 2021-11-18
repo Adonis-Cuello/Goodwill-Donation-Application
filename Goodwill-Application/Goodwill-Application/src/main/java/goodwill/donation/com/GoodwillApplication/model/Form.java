@@ -9,8 +9,6 @@ import java.util.Objects;
 @Entity
 public class Form{
 
-//    User tempUser = new User("Adonis Cuello", "123 Walnut Street Newark, De", "456 Goodwill Drive");
-//    Product tempProduct = new Product("Clothing", "lightly worn t-shirt", 0, 0);
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -19,48 +17,25 @@ public class Form{
     @OneToOne(cascade = CascadeType.ALL)
     private User user;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    private Product product;
-//    private String date;
-//    private String fullName;
-//    private String address;
-//    private String description;
-//    private String donorNotes;
-//    private Integer boxes;
-//    private Integer bags;
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Product> products;
+
     private Integer taxYear;
     private Integer receiptValue;
     private String signature;
     private String donoLocation;
 
-    public Form(){}
+    public Form() {
+    }
 
-    public Form(User user, Product product, Integer taxYear, Integer receiptValue, String signature, String donoLocation) {
+    public Form(User user, List<Product> products, Integer taxYear, Integer receiptValue, String signature, String donoLocation) {
         this.user = user;
-        this.product = product;
+        this.products = products;
         this.taxYear = taxYear;
         this.receiptValue = receiptValue;
         this.signature = signature;
         this.donoLocation = donoLocation;
     }
-
-<<<<<<< HEAD
-//    public User getUser() {
-//        return user;
-//    }
-//
-//    public void setUser(User user) {
-//        this.user = user;
-//    }
-//
-//    public Product getProduct() {
-//        return product;
-//    }
-//
-//    public void setProduct(Product product) {
-//        this.product = product;
-//    }
-
 
     public Integer getId() {
         return id;
@@ -70,117 +45,21 @@ public class Form{
         this.id = id;
     }
 
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
-    }
-
-    public String getFullName() {
-        return fullName;
-    }
-
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getDonorNotes() {
-        return donorNotes;
-    }
-
-    public void setDonorNotes(String donorNotes) {
-        this.donorNotes = donorNotes;
-=======
-        public User getUser() {
+    public User getUser() {
         return user;
->>>>>>> 9b0724e9c956e7d1c30395331543fd1f55a9b6f4
     }
 
     public void setUser(User user) {
         this.user = user;
     }
 
-    public Product getProduct() {
-        return product;
+    public List<Product> getProducts() {
+        return products;
     }
 
-    public void setProduct(Product product) {
-        this.product = product;
+    public void setProducts(List<Product> products) {
+        this.products = products;
     }
-
-//    public String getDate() {
-//        return date;
-//    }
-//
-//    public void setDate(String date) {
-//        this.date = date;
-//    }
-//
-//    public String getFullName() {
-//        return fullName;
-//    }
-//
-//    public void setFullName(String fullName) {
-//        this.fullName = fullName;
-//    }
-//
-//    public String getAddress() {
-//        return address;
-//    }
-//
-//    public void setAddress(String address) {
-//        this.address = address;
-//    }
-//
-//    public String getDescription() {
-//        return description;
-//    }
-//
-//    public void setDescription(String description) {
-//        this.description = description;
-//    }
-//
-//    public String getDonorNotes() {
-//        return donorNotes;
-//    }
-//
-//    public void setDonorNotes(String donorNotes) {
-//        this.donorNotes = donorNotes;
-//    }
-//
-//    public Integer getBoxes() {
-//        return boxes;
-//    }
-//
-//    public void setBoxes(Integer boxes) {
-//        this.boxes = boxes;
-//    }
-//
-//    public Integer getBags() {
-//        return bags;
-//    }
-//
-//    public void setBags(Integer bags) {
-//        this.bags = bags;
-//    }
 
     public Integer getTaxYear() {
         return taxYear;
@@ -214,50 +93,26 @@ public class Form{
         this.donoLocation = donoLocation;
     }
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Form)) return false;
+        if (o == null || getClass() != o.getClass()) return false;
         Form form = (Form) o;
-        return getId().equals(form.getId()) && getUser().equals(form.getUser()) && getProduct().equals(form.getProduct()) && getTaxYear().equals(form.getTaxYear()) && getReceiptValue().equals(form.getReceiptValue()) && getSignature().equals(form.getSignature()) && getDonoLocation().equals(form.getDonoLocation());
+        return Objects.equals(id, form.id) && Objects.equals(user, form.user) && Objects.equals(products, form.products) && Objects.equals(taxYear, form.taxYear) && Objects.equals(receiptValue, form.receiptValue) && Objects.equals(signature, form.signature) && Objects.equals(donoLocation, form.donoLocation);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getUser(), getProduct(), getTaxYear(), getReceiptValue(), getSignature(), getDonoLocation());
+        return Objects.hash(id, user, products, taxYear, receiptValue, signature, donoLocation);
     }
-
-    //    public static boolean isValidPoem(Form form) {
-//        return form != null && Strings.isNotBlank(form.getFullName())
-//                && Strings.isNotBlank(form.getAddress())
-//                && Strings.isNotBlank(form.getDate());
-//    }
-
 
     @Override
     public String toString() {
         return "Form{" +
                 "id=" + id +
-<<<<<<< HEAD
-                ", date='" + date + '\'' +
-                ", fullName='" + fullName + '\'' +
-                ", address='" + address + '\'' +
-                ", description='" + description + '\'' +
-                ", donorNotes='" + donorNotes + '\'' +
-                ", boxes=" + boxes +
-                ", bags=" + bags +
-=======
                 ", user=" + user +
-                ", product=" + product +
->>>>>>> 9b0724e9c956e7d1c30395331543fd1f55a9b6f4
+                ", products=" + products +
                 ", taxYear=" + taxYear +
                 ", receiptValue=" + receiptValue +
                 ", signature='" + signature + '\'' +
@@ -265,3 +120,4 @@ public class Form{
                 '}';
     }
 }
+

@@ -2,11 +2,10 @@ package goodwill.donation.com.GoodwillApplication.controller;
 
 import goodwill.donation.com.GoodwillApplication.exceptions.FormNotFoundException;
 import goodwill.donation.com.GoodwillApplication.model.Form;
-import goodwill.donation.com.GoodwillApplication.model.Product;
-import goodwill.donation.com.GoodwillApplication.model.User;
-import goodwill.donation.com.GoodwillApplication.service.FormServiceImpl;
-import goodwill.donation.com.GoodwillApplication.service.ProductService;
-import goodwill.donation.com.GoodwillApplication.service.SaveUserDataImpl;
+
+import goodwill.donation.com.GoodwillApplication.service.FormService;
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,18 +22,8 @@ import java.util.Map;
 public class FormController {
 
     @Autowired
-    private FormServiceImpl formService;
+    private FormService formService;
 
-    @Autowired
-    private SaveUserDataImpl userService;
-
-    @Autowired
-    private ProductService productService;
-
-    @Autowired
-    public FormController(FormServiceImpl formService) {
-        this.formService = formService;
-    }
 
 
 
@@ -45,15 +34,15 @@ public class FormController {
         return response;
     }
 
-//    @PostMapping("")
-//    public ResponseEntity createForm(@RequestBody User user, Product product, Form form) {
-//        Form saved = formService.create(form);
+    @PostMapping("")
+    public ResponseEntity<Form> createForm(@RequestBody  Form form) {
+        Form saved = formService.create(form);
 //        User userSaved = userService.create(user);
 //        Product productSaved = productService.create(product);
-//
-//        ResponseEntity response = new ResponseEntity(saved, userSaved, productSaved, HttpStatus.CREATED);
-//        return response;
-//    }
+
+        ResponseEntity response = new ResponseEntity(saved, HttpStatus.CREATED);
+        return response;
+    }
 
 //    @PostMapping("/forms/submit")
 //    public RedirectView submitPost(
