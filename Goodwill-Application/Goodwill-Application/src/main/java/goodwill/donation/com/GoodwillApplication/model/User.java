@@ -9,18 +9,17 @@ import javax.persistence.Id;
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String fullName;
     private String address;
-    private String donoLocation;
+
 
     public User(){}
 
-    public User(String fullName, String address, String donoLocation){
+    public User(String fullName, String address){
         this.fullName = fullName;
         this.address = address;
-        this.donoLocation = donoLocation;
     }
 
     public String getFullName() {
@@ -39,13 +38,6 @@ public class User {
         this.address = address;
     }
 
-    public String getDonoLocation() {
-        return donoLocation;
-    }
-
-    public void setDonoLocation(String donoLocation) {
-        this.donoLocation = donoLocation;
-    }
 
     @Override
     public String toString() {
@@ -53,7 +45,6 @@ public class User {
                 "id=" + id +
                 ", fullName='" + fullName + '\'' +
                 ", address='" + address + '\'' +
-                ", donoLocation='" + donoLocation + '\'' +
                 '}';
     }
 }

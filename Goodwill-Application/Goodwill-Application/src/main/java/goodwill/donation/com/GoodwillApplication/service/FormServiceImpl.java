@@ -44,4 +44,13 @@ public class FormServiceImpl implements FormService {
         formRepo.delete(tradeToDelete);
         return true;
     }
+
+    @Override
+    public Form getFormById(Integer id)  throws FormNotFoundException{
+        Optional<Form> widgetOptional = formRepo.findById(id);
+        if(widgetOptional.isEmpty()){
+            throw new FormNotFoundException("Form not found");
+        }
+        return widgetOptional.get();
+    }
 }

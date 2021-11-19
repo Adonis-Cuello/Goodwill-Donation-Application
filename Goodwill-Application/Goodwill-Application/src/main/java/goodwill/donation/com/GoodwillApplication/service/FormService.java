@@ -10,6 +10,5 @@ public interface FormService {
     List<Form> getAllForms();
     Form update(Integer id, Form form) throws FormNotFoundException;
     Boolean deleteForm(Integer id) throws FormNotFoundException;
-
-
+    Form getFormById(Integer id) throws FormNotFoundException;
 }

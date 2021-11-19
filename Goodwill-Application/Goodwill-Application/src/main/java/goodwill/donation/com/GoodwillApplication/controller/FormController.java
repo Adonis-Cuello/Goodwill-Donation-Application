@@ -25,8 +25,6 @@ public class FormController {
     private FormService formService;
 
 
-
-
     @GetMapping("/all")
     public ResponseEntity<List<Form>> getAllForms() {
         List<Form> trades = formService.getAllForms();
@@ -34,28 +32,25 @@ public class FormController {
         return response;
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getFormById(@PathVariable Integer id){
+        try {
+            Form form = formService.getFormById(id);
+            ResponseEntity<?> response = new ResponseEntity<>(form, HttpStatus.OK);
+            return response;
+        } catch (FormNotFoundException e) {
+            return ResponseEntity
+                    .status(HttpStatus.NOT_FOUND)
+                    .build();
+        }
+    }
+
     @PostMapping("")
     public ResponseEntity<Form> createForm(@RequestBody  Form form) {
         Form saved = formService.create(form);
-//        User userSaved = userService.create(user);
-//        Product productSaved = productService.create(product);
-
         ResponseEntity response = new ResponseEntity(saved, HttpStatus.CREATED);
         return response;
     }
-
-//    @PostMapping("/forms/submit")
-//    public RedirectView submitPost(
-//            HttpServletRequest request,
-//            @ModelAttribute Form form,
-//            RedirectAttributes redirectAttributes) {
-//        if (Form.isValidPoem(form)) {
-//            redirectAttributes.addFlashAttribute("form", form);
-//            return new RedirectView("/forms/submit", true);
-//        } else {
-//            return new RedirectView("/forms/submit", true);
-//        }
-//    }
 
     @GetMapping("/forms/success")
     public String getSuccess(HttpServletRequest request) {
